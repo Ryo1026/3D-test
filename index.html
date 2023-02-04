@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3D</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
+    <style>
+      body {
+        margin: 0;
+      }
+      .container3D {
+        position: relative;
+        width: 640px;
+        height: 360px;
+        top: 360px;
+        /* overflow: hidden; */
+      }
+      .cut {
+        /* transform-style: preserve-3d; */
+        perspective: 1000px;
+        height: 360px;
+      }
+      .box3D {
+        transform-style: preserve-3d;
+        position: relative;
+        height: 360px;
+      }
+      .top {
+        position: absolute;
+        top: -100%;
+      }
+      .mid {
+        position: absolute;
+        top: 0;
+      }
+      .bot {
+        position: absolute;
+        top: 100%;
+      }
+      .bg {
+        width: 640px;
+        height: 360px;
+        border-radius: 7em 7em 3em 8em / 7em 8em 4em 6em;
+        clip-path: polygon(
+          3% 34%,
+          7% 27%,
+          7% 4%,
+          53% 4%,
+          57% 13%,
+          98% 14%,
+          98% 97%,
+          55% 97%,
+          52% 90%,
+          3% 90%
+        );
+      }
+      .cover {
+        /* display: none; */
+        position: absolute;
+        left: 0;
+        width: 100%;
+      }
+      .coverImg1 {
+        display: none;
+      }
+      .firstAnimation {
+        animation: init 0.8s linear;
+      }
+      @keyframes init {
+        0% {
+          clip-path: polygon(
+            50% 68%,
+            50% 62%,
+            50% 59%,
+            50% 59%,
+            49% 62%,
+            50% 62%,
+            50% 92%,
+            50% 92%,
+            51% 88%,
+            50% 88%
+          );
+        }
+        20% {
+          clip-path: polygon(
+            61% 68%,
+            59% 62%,
+            59% 59%,
+            50% 59%,
+            49% 62%,
+            41% 62%,
+            41% 92%,
+            50% 92%,
+            51% 88%,
+            61% 88%
+          );
+        }
+        40% {
+          clip-path: polygon(
+            60% 65%,
+            59% 62%,
+            59% 35%,
+            51% 35%,
+            50% 39%,
+            41% 39%,
+            41% 100%,
+            50% 100%,
+            51% 95%,
+            60% 91%
+          );
+        }
+        50% {
+          clip-path: polygon(
+            50% 65%,
+            50% 62%,
+            50% 20%,
+            50% 20%,
+            50% 25%,
+            50% 25%,
+            50% 100%,
+            50% 100%,
+            50% 95%,
+            50% 91%
+          );
+        }
+        60% {
+          clip-path: polygon(
+            36% 34%,
+            38% 29%,
+            38% 10%,
+            51% 4%,
+            52% 7%,
+            65% 4%,
+            64% 100%,
+            50% 100%,
+            48% 98%,
+            36% 93%
+          );
+        }
+        80% {
+          clip-path: polygon(
+            3% 34%,
+            7% 27%,
+            7% 4%,
+            53% 4%,
+            57% 13%,
+            98% 14%,
+            98% 97%,
+            55% 97%,
+            52% 90%,
+            3% 90%
+          );
+        }
+        100% {
+          clip-path: polygon(
+            3% 34%,
+            7% 27%,
+            7% 4%,
+            53% 4%,
+            57% 13%,
+            98% 14%,
+            98% 97%,
+            55% 97%,
+            52% 90%,
+            3% 90%
+          );
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container3D">
+      <div class="cut top">
+        <div class="box3D">
+          <img class="bg" src="./茶裏王_pic03底圖.png" />
+          <img class="coverImg0 cover" src="./茶裏王_pic03上層.png" alt="" />
+          <img class="coverImg0 cover" src="./茶裏王_pic03上層-1.png" alt="" />
+        </div>
+      </div>
+      <div class="cut mid">
+        <div class="box3D">
+          <img class="bg firstAnimation" src="./茶裏王_pic01底圖.png" />
+          <img class="coverImg1 cover" src="./茶裏王_pic01上層.png" alt="" />
+          <img class="coverImg1 cover" src="./茶裏王_pic01上層-1.png" alt="" />
+        </div>
+      </div>
+      <div class="cut bot">
+        <div class="box3D">
+          <img class="bg" src="./茶裏王_pic02底圖.png" />
+          <img class="coverImg2 cover" src="./茶裏王_pic02上層.png" alt="" />
+          <img class="coverImg2 cover" src="./茶裏王_pic02上層-1.png" alt="" />
+        </div>
+      </div>
+    </div>
+
+    <script>
+      let lastScrollY = null;
+      let waiting = false;
+      let scrollIndex = 2;
+      const cut0 = document.querySelector(".top");
+      const cut1 = document.querySelector(".mid");
+      const cut2 = document.querySelector(".bot");
+      const box3D = document.querySelectorAll(".box3D");
+      const bg0 = document.querySelectorAll(".bg")[0];
+      const bg1 = document.querySelectorAll(".bg")[1];
+      const bg2 = document.querySelectorAll(".bg")[2];
+      const cover0 = document.querySelectorAll(".coverImg0");
+      const cover1 = document.querySelectorAll(".coverImg1");
+      const cover2 = document.querySelectorAll(".coverImg2");
+      const animationDelay = function (sec) {
+        return new Promise(function (resolve, reject) {
+          setTimeout(resolve, sec);
+        });
+      };
+
+      document
+        .querySelector(".container3D")
+        .addEventListener("wheel", wheelHandler);
+
+      setTimeout(() => {
+        cover1.forEach((ele) => {
+          TweenMax.set(ele, {
+            display: "block",
+            top: "0",
+          });
+        });
+      }, 800);
+
+      function wheelHandler(evt) {
+        if (evt.deltaY > 0) {
+          scrollAnimation("down");
+        } else if (evt.deltaY < 0) {
+          scrollAnimation("up");
+        }
+      }
+
+      function scrollAnimation(direction) {
+        if (waiting) return;
+        waiting = true;
+        if (direction === "down") scrollIndex += 1;
+        if (direction === "up")
+          scrollIndex === 0 ? (scrollIndex = 2) : (scrollIndex -= 1);
+
+        console.log("scrollIndex", scrollIndex);
+        if (direction === "down") {
+          TweenMax.to(box3D[1], 0.5, {
+            y: -150,
+            z: -60,
+            rotationY: -40,
+          });
+          cover1.forEach((ele) => {
+            TweenMax.to(ele, 0.5, {
+              z: 60,
+            });
+          });
+          TweenMax.to(box3D[2], 0.5, {
+            y: -150,
+            z: -60,
+            rotationY: 40,
+          });
+          cover2.forEach((ele) => {
+            TweenMax.to(ele, 0.5, {
+              z: 60,
+            });
+          });
+          TweenMax.set(box3D[0], {
+            display: "none",
+          });
+
+          setTimeout(() => {
+            TweenMax.to(box3D[1], 0.5, {
+              y: -360,
+            });
+            TweenMax.to(box3D[2], 0.5, {
+              y: -360,
+            });
+          }, 600);
+
+          setTimeout(() => {
+            TweenMax.to(box3D[1], 0.5, {
+              z: 0,
+              rotationY: 0,
+            });
+            cover1.forEach((ele) => {
+              TweenMax.to(ele, 0.5, {
+                z: 0,
+              });
+            });
+            TweenMax.to(box3D[2], 0.5, {
+              z: 0,
+              rotationY: 0,
+            });
+            cover2.forEach((ele) => {
+              TweenMax.to(ele, 0.5, {
+                z: 0,
+              });
+            });
+            animationDelay()
+              .then(function () {
+                TweenMax.to(box3D[0], 0.5, {
+                  y: 720,
+                });
+                return animationDelay(500);
+              })
+              .then(function () {
+                TweenMax.set(box3D[0], {
+                  display: "block",
+                });
+              });
+          }, 1200);
+        } else if (direction === "up") {
+          console.log("up");
+        }
+
+        setTimeout(() => {
+          waiting = false;
+        }, 2000);
+      }
+    </script>
+  </body>
+</html>
