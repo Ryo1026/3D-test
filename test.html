@@ -15,7 +15,7 @@
         width: 640px;
         height: 360px;
         top: 360px;
-        overflow: hidden;
+        /* overflow: hidden; */
       }
       .cut {
         /* transform-style: preserve-3d; */
@@ -160,19 +160,19 @@
   <body>
     <div class="container">
       <div class="cut first">
-        <img class="bg firstAnimation" src="./素材_pic01底圖.png" />
-        <img class="coverImg1 cover" src="./素材_pic01上層-1.png" alt="" />
-        <img class="coverImg1 cover" src="./素材_pic01上層-2.png" alt="" />
+        <img class="bg firstAnimation" src="./茶裏王_pic01底圖.png" />
+        <img class="coverImg1 cover" src="./茶裏王_pic01上層.png" alt="" />
+        <img class="coverImg1 cover" src="./茶裏王_pic01上層-1.png" alt="" />
       </div>
       <div class="cut second">
-        <img class="bg" src="./素材_pic02底圖.png" />
-        <img class="coverImg2 cover" src="./素材_pic02上層-1.png" alt="" />
-        <img class="coverImg2 cover" src="./素材_pic02上層-2.png" alt="" />
+        <img class="bg" src="./茶裏王_pic02底圖.png" />
+        <img class="coverImg2 cover" src="./茶裏王_pic02上層.png" alt="" />
+        <img class="coverImg2 cover" src="./茶裏王_pic02上層-1.png" alt="" />
       </div>
       <div class="cut third">
-        <img class="bg" src="./素材_pic03底圖.png" />
-        <img class="coverImg3 cover" src="./素材_pic03上層-1.png" alt="" />
-        <img class="coverImg3 cover" src="./素材_pic03上層-2.png" alt="" />
+        <img class="bg" src="./茶裏王_pic03底圖.png" />
+        <img class="coverImg3 cover" src="./茶裏王_pic03上層.png" alt="" />
+        <img class="coverImg3 cover" src="./茶裏王_pic03上層-1.png" alt="" />
       </div>
     </div>
     <script>
@@ -204,26 +204,26 @@
         TweenMax.to(bg1, 0.5, {
           y: -120,
           rotationY: -40,
-          rotation: -2,
+          // rotation: -2,
         });
         TweenMax.to(coverA1, 0.5, {
           x: -40,
           y: -120,
           z: 150,
           rotationY: -40,
-          rotation: -2,
+          // rotation: -2,
         });
         TweenMax.to(coverA2, 0.5, {
           x: -40,
           y: -120,
           z: 150,
           rotationY: -40,
-          rotation: -2,
+          // rotation: -2,
         });
         TweenMax.to(bg2, 0.5, {
           y: -90,
           rotationY: 40,
-          rotation: 2,
+          // rotation: 2,
         });
         TweenMax.to(coverB1, 0.5, {
           display: "block",
@@ -231,7 +231,7 @@
           x: 30,
           y: -90,
           rotationY: 40,
-          rotation: 2,
+          // rotation: 2,
         });
         TweenMax.to(coverB2, 0.5, {
           display: "block",
@@ -239,7 +239,7 @@
           x: 30,
           y: -90,
           rotationY: 40,
-          rotation: 2,
+          // rotation: 2,
         });
       }, 1400);
 
@@ -265,7 +265,7 @@
         });
       }, 2000);
 
-      // 回正(第一cut沒回正)
+      // 2回正(第一cut沒回正)
       setTimeout(() => {
         TweenMax.to(bg2, 0.5, {
           rotationY: 0,
@@ -330,7 +330,7 @@
         });
       }, 3200);
 
-      // 退場
+      // 2.退場
       setTimeout(() => {
         TweenMax.to(bg2, 0.5, {
           y: -780,
@@ -352,7 +352,7 @@
         });
       }, 3800);
 
-      // 回正
+      // 3回正
       setTimeout(() => {
         TweenMax.to(bg3, 0.5, {
           rotationY: 0,
@@ -371,9 +371,9 @@
           rotation: 0,
         });
 
-        TweenMax.to(bg2, 0.5, {
-          rotationY: 0,
-        });
+        // TweenMax.to(bg2, 0.5, {
+        //   rotationY: 0,
+        // });
       }, 4400);
     </script>
   </body>
