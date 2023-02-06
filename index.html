@@ -188,6 +188,22 @@
     </div>
 
     <script>
+      parent.postMessage({ type: "fullscreen" }, "*");
+      parent.postMessage(
+        {
+          type: "resize",
+          fullWidth: true,
+          height: window.innerWidth * 0.5625,
+        },
+        "*"
+      );
+      parent.postMessage(
+        {
+          type: "ad-action",
+          action: "show_close_button",
+        },
+        "*"
+      );
       let lastScrollY = null;
       let waiting = false;
       let scrollIndex = 2;
