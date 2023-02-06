@@ -11,27 +11,30 @@
         margin: 0;
       }
       .container3D {
-        position: relative;
-        width: 640px;
-        height: 360px;
-        top: 360px;
-        /* overflow: hidden; */
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100vw;
+        height: 56.25vw;
+        overflow: hidden;
       }
       .cut {
         /* transform-style: preserve-3d; */
         position: absolute;
         perspective: 1000px;
-        height: 360px;
+        width: 100%;
+        height: 100%;
       }
       .box3D {
         transform-style: preserve-3d;
         position: relative;
-        height: 360px;
+        width: 100%;
+        height: 100%;
       }
       .bg {
-        width: 640px;
-        height: 360px;
-        border-radius: 7em 7em 3em 8em / 7em 8em 4em 6em;
+        width: 100%;
+        height: 100%;
+        border-radius: 3.5em 6em 2em 4em / 6em 4em 3em 5em;
         clip-path: polygon(
           3% 34%,
           7% 27%,
@@ -216,6 +219,20 @@
           .classList.remove("firstAnimation");
       });
 
+      window.addEventListener("message", (e) => {
+        if (!e.data.action) return;
+
+        if (lastScrollY === null) {
+          lastScrollY = e.data.scrollTop;
+        } else {
+          if (e.data.scrollTop > lastScrollY) {
+            scrollAnimation("down");
+          } else if (e.data.scrollTop < lastScrollY) {
+            scrollAnimation("up");
+          }
+          lastScrollY = e.data.scrollTop;
+        }
+      });
       function wheelHandler(evt) {
         if (evt.deltaY > 0) {
           scrollAnimation("down");
